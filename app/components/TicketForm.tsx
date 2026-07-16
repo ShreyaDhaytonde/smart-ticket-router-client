@@ -1,44 +1,29 @@
 "use client";
 
 import { useState, type SubmitEvent } from "react";
-import type { Ticket } from "@/app/types";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-type TicketFormProps = {
-  onTicketsCreated: (tickets: Ticket[]) => void;
-};
+import type { TicketFormProps } from "@/app/types/TicketTypes";
+import { createTicket } from "@/app/api/tickets";
 
 export default function TicketForm({ onTicketsCreated }: TicketFormProps) {
   const [issue, setIssue] = useState("");
-  const [submitting, setSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
-    if (!issue.trim() || submitting) return;
+    if (!issue.trim() || isSubmitting) return;
 
-    setSubmitting(true);
+    setIsSubmitting(true);
     setError(null);
 
     try {
-      const res = await fetch(`${API_URL}/tickets/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ issue }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Could not route this ticket. Please try again.");
-      }
-
-      const data: Ticket[] = await res.json();
+      const data = await createTicket(issue);
       onTicketsCreated(data);
       setIssue("");
     } catch {
       setError("Something went wrong while routing your ticket. Please try again.");
     } finally {
-      setSubmitting(false);
+      setIsSubmitting(false);
     }
   }
 
@@ -63,10 +48,10 @@ export default function TicketForm({ onTicketsCreated }: TicketFormProps) {
 
         <button
           type="submit"
-          disabled={submitting || !issue.trim()}
+          disabled={isSubmitting || !issue.trim()}
           className="mt-4 w-full rounded-lg bg-gradient-to-r from-blue-700 via-indigo-800 to-purple-900 px-4 py-2.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-gray-400 disabled:bg-none"
         >
-          {submitting ? "Classifying your ticket..." : "Submit ticket"}
+          {isSubmitting ? "Classifying your ticket..." : "Submit ticket"}
         </button>
       </form>
 

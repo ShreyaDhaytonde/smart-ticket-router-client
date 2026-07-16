@@ -1,13 +1,7 @@
 "use client";
 
-import type { Ticket } from "@/app/types";
-import { CONFIDENCE_STYLES, PRIORITY_STYLES } from "@/app/lib/ticket-ui";
-
-type TicketCardProps = {
-  ticket: Ticket;
-  index: number;
-  total: number;
-};
+import type { TicketCardProps } from "@/app/types/TicketTypes";
+import { CONFIDENCE_STYLES, PRIORITY_STYLES } from "@/app/constants/ticket-ui";
 
 export default function TicketCard({ ticket, index, total }: TicketCardProps) {
   const needsReview = ticket.confidence === "Low" || !ticket.is_support_issue;

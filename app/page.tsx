@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import type { Ticket } from "@/app/types";
+import type { Ticket } from "@/app/types/TicketTypes";
 import Header from "@/app/components/Header";
 import TicketForm from "@/app/components/TicketForm";
 import TicketList from "@/app/components/TicketList";

@@ -1,3 +1,17 @@
+export type TicketCardProps = {
+  ticket: Ticket;
+  index: number;
+  total: number;
+};
+
+export type TicketListProps = {
+  tickets: Ticket[];
+};
+
+export type TicketFormProps = {
+  onTicketsCreated: (tickets: Ticket[]) => void;
+};
+
 export type Ticket = {
   ticket_id: string;
   created_at: string;

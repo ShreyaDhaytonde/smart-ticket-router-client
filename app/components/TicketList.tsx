@@ -1,12 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import type { Ticket } from "@/app/types";
+import type {TicketListProps} from "@/app/types/TicketTypes";
 import TicketCard from "@/app/components/TicketCard";
-
-type TicketListProps = {
-  tickets: Ticket[];
-};
 
 export default function TicketList({ tickets }: TicketListProps) {
   const [showRoutingStats, setShowRoutingStats] = useState(false);
