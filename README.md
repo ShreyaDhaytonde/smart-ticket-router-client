@@ -54,3 +54,7 @@ frontend/
 │   │   └── TicketCard.tsx    # single ticket display
 │   └── lib/ticket-ui.ts      # UI helpers
 ```
+<img width="1508" height="853" alt="image" src="https://github.com/user-attachments/assets/95dc1f16-fae2-4a3b-95ea-785c4e40c9d1" />
+<img width="1512" height="860" alt="image" src="https://github.com/user-attachments/assets/b35e5be5-d90e-4109-98c7-e29d1f1e233a" />
+<img width="1512" height="866" alt="image" src="https://github.com/user-attachments/assets/740c5b8e-e0da-4d13-81ce-25e400032a61" />
+
